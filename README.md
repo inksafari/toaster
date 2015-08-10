@@ -55,11 +55,11 @@ Install project dependencies with `bundle install --jobs 4 --path vendor/bundle 
 
 `bundle exec rake adoc`
 
-### Convert AsciiiDoc files to PDF files
+### Convert AsciiDoc files to PDF files
 
 `bundle exec rake pdf --quiet`
 
-### Convert AsciiiDoc files to HTML files
+### Convert AsciiDoc files to HTML files
 
 `bundle exec rake html --quiet`
 
