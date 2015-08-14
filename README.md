@@ -1,10 +1,12 @@
 # toaster
-> An experimental project.
+>A script to convert AsciiDoc documents into HTML or PDF. Thanks [Asciidoctor](http://asciidoctor.org/).
 
 ## Requirements
 
 * [Pandoc](http://pandoc.org/)
 * [Ruby Language](https://www.ruby-lang.org/)（ I would like to recommend Ruby 2.2 or newer ）
+    * [Bundler Gem](http://bundler.io/)
+* [Diagramming software](https://github.com/asciidoctor/asciidoctor-diagram)
 
 ## Installation
 
@@ -12,7 +14,7 @@ Install project dependencies with `bundle install --jobs 4 --path vendor/bundle 
 
 ## Usage
 
-### My Project Structure
+### Project Structure
 
 ```text
 .
@@ -30,40 +32,40 @@ Install project dependencies with `bundle install --jobs 4 --path vendor/bundle 
 │   │       ├── section_b.adoc
 │   │       └── section_c.adoc
 │   ├── docinfo-footer.html
-│   ├── sample_pdf.adoc
+│   ├── book.adoc
 │   ├── site
 │   │   └── index.adoc
-│   └── _temp（ Unsorted Asciidoc Files ）
+│   └── _temp（ Unsorted AsciiDoc Files ）
 ├── dist
 │   ├── sample.pdf
 │   ├── ch_ooo.html
 │   └── ch_xxx.html
 ├── mkd（ Markdown Files ）
 ├── Rakefile
-├── README.md
-├── themes（ copy from themes_base/stylesheets dir ）
-│   ├── asciidoctor.css
-│   ├── colony.css
-│   └── golo.css
-├── themes_base
-│   ├── [asciidoctor-stylesheet-factory repo](https://github.com/asciidoctor/asciidoctor-stylesheet-factory)
-│   └── stylesheets dir
+├── 404.html
 └── vendor
 ```
+
+### Themes
+
+1. `cd /path/to/project`
+2. `git clone https://github.com/asciidoctor/asciidoctor-stylesheet-factory asf && cd asf`
+3. Editing the config.rb： 'stylesheets' -> '../themes'
+4. `bundle install --path vendor && bundle exec compass compile`
 
 ### Convert Markdown files to AsciiDoc files
 
 `bundle exec rake adoc`
 
-### Convert AsciiDoc files to PDF files
+### Convert AsciiiDoc files to PDF 
 
 `bundle exec rake pdf --quiet`
 
-### Convert AsciiDoc files to HTML files
+### Convert AsciiiDoc files to HTML Pages
 
 `bundle exec rake html --quiet`
 
-### Deploying the website
+### Deploying the static website
 
 `bundle exec rake deploy`
 

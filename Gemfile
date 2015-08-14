@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 
 gem 'rake'
 gem 'coderay', github: 'rubychan/coderay'
-gem 'filewatcher'
 gem 'pandoc-ruby'
 gem 'asciidoctor', github: 'asciidoctor'
 

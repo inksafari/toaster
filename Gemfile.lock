@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: git://github.com/asciidoctor/asciidoctor-pdf.git
-  revision: b042eca6380e474c29874f9467403d81ba2d5fda
+  revision: 6675565a20828913785b8cc5e1d169ea09ea4d5e
   specs:
     asciidoctor-pdf (1.5.0.dev)
       asciidoctor (~> 1.5.0)
@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: git://github.com/asciidoctor/asciidoctor.git
-  revision: bd1482cd269444d0a949c3fd98aa4fa6ff545c69
+  revision: 082f1a4465975ac774d988f92c431459d58d0184
   specs:
     asciidoctor (1.5.3.dev)
 
@@ -44,8 +44,6 @@ GEM
       asciidoctor-pdf-cjk (~> 0.1.1)
     css_parser (1.3.6)
       addressable
-    filewatcher (0.5.2)
-      trollop (~> 2.0)
     hashery (2.1.1)
     pandoc-ruby (1.0.0)
     pdf-core (0.6.0)
@@ -75,7 +73,6 @@ GEM
     thread_safe (0.3.5)
     treetop (1.5.3)
       polyglot (~> 0.3)
-    trollop (2.1.2)
     ttfunk (1.4.0)
 
 PLATFORMS
@@ -88,7 +85,6 @@ DEPENDENCIES
   asciidoctor-pdf-cjk (~> 0.1.1)
   asciidoctor-pdf-cjk-kai_gen_gothic (~> 0.1.0)
   coderay!
-  filewatcher
   pandoc-ruby
   prawn
   rake
