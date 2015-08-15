@@ -20,7 +20,7 @@ task :adoc do
   Dir.glob("#{MD_SOURCE_DIRECTORY}/**/*.md") do |file|
     puts "Converting #{File.basename(file)}"
     md = File.open(file).read
-    ad = PandocRuby.new(md, :from => :markdown, :to => :asciidoc)
+    ad = PandocRuby.convert(md, "atx-headers", {:f => :markdown, :to => :asciidoc})
     filename  = "#{AD_OUTPUT_DIRECTORY}/#{File.basename(file,'.*')}.adoc"
     File.open(filename, 'w') { |file| file.write(ad) }
   end
@@ -37,7 +37,7 @@ end
 task :pdf => :clean do
   puts 'Converting to PDF... (this one takes a while)'
   sh %Q{
-    bundle exec asciidoctor-pdf \
+    bundle exec asciidoctor-pdf -r asciidoctor-diagram \
       -r asciidoctor-pdf-cjk \
       -r asciidoctor-pdf-cjk-kai_gen_gothic \
       -a pdf-style=KaiGenGothicTW \
