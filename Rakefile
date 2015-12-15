@@ -9,9 +9,11 @@ require 'pandoc-ruby'
 
 MD_SOURCE_DIRECTORY = "mkd"
 AD_OUTPUT_DIRECTORY = "adoc/_temp"
-SOURCE_DIRECTORY = "adoc"
-OUTPUT_DIRECTORY = "dist"
-BOOK_OUTPUT_NAME = "sample"
+ASCIIDOCTOR_STYLE   = "asciidoctor"
+STYLES_DIRECTORY    = "../../themes"
+SOURCE_DIRECTORY    = "adoc"
+OUTPUT_DIRECTORY    = "dest"
+BOOK_OUTPUT_NAME    = "sample"
 
 task :default => :html
 
@@ -37,10 +39,14 @@ end
 task :pdf => :clean do
   puts 'Converting to PDF... (this one takes a while)'
   sh %Q{
-    bundle exec asciidoctor-pdf -r asciidoctor-diagram \
+    bundle exec asciidoctor \
+      -r asciidoctor-pdf \
       -r asciidoctor-pdf-cjk \
       -r asciidoctor-pdf-cjk-kai_gen_gothic \
+      -r asciidoctor-diagram \
+      -b pdf -d book \
       -a pdf-style=KaiGenGothicTW \
+      -a linkcss! \
       -o #{OUTPUT_DIRECTORY}/#{BOOK_OUTPUT_NAME}.pdf \
       #{SOURCE_DIRECTORY}/book.adoc 2>/dev/null
   }
@@ -52,15 +58,16 @@ task :html => :clean do
     puts "Converting #{File.basename(file)}"
     sh %Q{
       bundle exec asciidoctor -r asciidoctor-diagram \
-        -d book -a lang=zh-Hant-TW \
+        -d article -a lang=zh-Hant-TW \
         -a source-highlighter=coderay \
-        -a stylesdir=../../themes -a stylesheet=colony.css \
+        -a stylesdir=#{STYLES_DIRECTORY} \
+        -a stylesheet=#{ASCIIDOCTOR_STYLE}.css \
         -a idprefix! -a idseparator=- -a sectanchors \
         -o #{OUTPUT_DIRECTORY}/#{File.basename(file,'.*')}.html \
         #{file}
-    }
+    } 
   end
-  puts 'Done!'
+  puts '[✓] Done!'
 end
 
 desc 'Publishing the website via rsync'
